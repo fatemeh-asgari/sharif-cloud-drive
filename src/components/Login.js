@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../states/operations";
+import { register } from "../states/userSlice";
 import "../styles/Login.css";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const responseData = await loginUser({
+      username: usernameRef.current.value,
+      password: passwordRef.current.value,
+    });
+    if (responseData) {
+      dispatch(register(responseData));
+      navigate("/home");
+    }
+  };
+
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">
-        <form>
+        <form onSubmit={handleLogin}>
           <h3>Sign In</h3>
           <div className="mb-3">
-            <label>Email address</label>
+            <label>Username</label>
             <input
-              type="email"
+              type="text"
               className="form-control"
-              placeholder="Enter email"
+              placeholder="Username"
+              ref={usernameRef}
             />
           </div>
           <div className="mb-3">
@@ -21,6 +43,7 @@ const Login = () => {
               type="password"
               className="form-control"
               placeholder="Enter password"
+              ref={passwordRef}
             />
           </div>
           <div className="d-grid">

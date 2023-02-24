@@ -28,6 +28,7 @@ const Signup = () => {
       navigate("/home");
     }
   };
+  
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">
