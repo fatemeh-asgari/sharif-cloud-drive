@@ -10,7 +10,6 @@ export const registerUser = async (data) => {
     const responseData = await response.json();
     return responseData;
   } catch (error) {
-    debugger;
     notifyError(error.message);
     return null;
   }
