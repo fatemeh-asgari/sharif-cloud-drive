@@ -7,8 +7,12 @@ export const registerUser = async (data) => {
       method: "POST",
       body: JSON.stringify(data),
     });
+    if (!response.ok) {
+      const responseJson = await response.json();
+      throw new Error(responseJson.username);
+    }
     const responseData = await response.json();
-    return responseData;
+    return responseData; 
   } catch (error) {
     notifyError(error.message);
     return null;
