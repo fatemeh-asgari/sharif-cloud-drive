@@ -40,3 +40,24 @@ export const loginUser = async (data) => {
     return null;
   }
 };
+
+export const logoutUser = async (token) => {
+  try {
+    const url = `http://127.0.0.1:8000/api/v1/logout/`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: "token 326606550b631b994927a0ed385309db8fe66160",
+        "User-Token": token,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("server error");
+    }
+    const responseText = await response.text();
+    return responseText;
+  } catch (error) {
+    notifyError(error.message);
+    return null;
+  }
+};

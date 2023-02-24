@@ -19,10 +19,18 @@ export const userSlice = createSlice({
       state.email = action.payload.email;
       state.token = action.payload.token;
     },
+    logout: (state) => {
+      state.id =null;
+      state.username = null;
+      state.firstName = null;
+      state.lastName = null;
+      state.email = null;
+      state.token = null;
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { register } = userSlice.actions;
+export const { register, logout } = userSlice.actions;
 
 export default userSlice.reducer;
