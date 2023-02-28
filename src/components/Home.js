@@ -5,6 +5,7 @@ import { logoutUser } from "../states/operations";
 import { logout } from "../states/userSlice";
 import avatar from "../assets/person.svg";
 import "../styles/Home.css";
+import LibraryList from "./LibraryList";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const Home = () => {
   };
 
   return (
+    <>
     <nav className="navbar navbar-expand-lg home-navbar-light fixed-top">
       <div className="container-fluid">
         <ul className="navbar-nav">
@@ -31,11 +33,7 @@ const Home = () => {
               className="nav-link dropdown-toggle d-flex align-items-center avatar__container"
               onClick={() => setIsProfileOpen(!isProfileOpen)}
             >
-              <img
-                src={avatar}
-                className="rounded-circle"
-                height="30"
-                alt="avatar"
+              <img src={avatar} className="rounded-circle" height="30" alt="avatar"
               />
             </div>
             {isProfileOpen && (
@@ -50,6 +48,11 @@ const Home = () => {
         </ul>
       </div>
     </nav>
+    <div className="libraries__container">
+      <LibraryList />
+    </div>
+    </>
+    
   );
 };
 
