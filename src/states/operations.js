@@ -5,6 +5,9 @@ export const registerUser = async (data) => {
     const url = `http://127.0.0.1:8000/api/v1/user/`;
     const response = await fetch(url, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(data),
     });
     if (!response.ok) {
@@ -25,7 +28,8 @@ export const loginUser = async (data) => {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "token 326606550b631b994927a0ed385309db8fe66160",
+        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(data),
     });
@@ -46,8 +50,10 @@ export const logoutUser = async (token) => {
     const url = `http://127.0.0.1:8000/api/v1/logout/`;
     const response = await fetch(url, {
       method: "POST",
+      mode: 'cors',
       headers: {
-        Authorization: "token 326606550b631b994927a0ed385309db8fe66160",
+        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        "Content-Type": "application/json",
         "User-Token": token,
       },
     });
