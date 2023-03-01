@@ -19,3 +19,11 @@
   padding: 8px 0;
   margin-bottom: 1rem;
 }
+
+.libraries__container {
+  width: 90%;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}

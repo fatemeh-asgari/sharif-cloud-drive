@@ -6,7 +6,7 @@ export const registerUser = async (data) => {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
@@ -29,7 +29,7 @@ export const loginUser = async (data) => {
       method: "POST",
       headers: {
         Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
@@ -50,7 +50,7 @@ export const logoutUser = async (token) => {
     const url = `http://127.0.0.1:8000/api/v1/logout/`;
     const response = await fetch(url, {
       method: "POST",
-      mode: 'cors',
+      mode: "cors",
       headers: {
         Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
         "Content-Type": "application/json",
@@ -62,6 +62,28 @@ export const logoutUser = async (token) => {
     }
     const responseText = await response.text();
     return responseText;
+  } catch (error) {
+    notifyError(error.message);
+    return null;
+  }
+};
+
+export const createLibrary = async (data) => {
+  try {
+    const url = `http://127.0.0.1:8000/api/v1/library/`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error("Create library failed!");
+    }
+    const responseData = await response.json();
+    return responseData;
   } catch (error) {
     notifyError(error.message);
     return null;
