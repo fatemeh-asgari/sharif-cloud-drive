@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import LibraryItem from "./LibraryItem";
+import CreateLibraryModal from "./CreateLibraryModal";
 import addLibrary from "../assets/addLibrary.svg";
 import "../styles/LibraryList.css";
-
 
 const LIBRARY_DOMMY_DATA = [
   {
@@ -50,13 +48,37 @@ const LIBRARY_DOMMY_DATA = [
 ];
 
 const LibraryList = () => {
-  return <div className="library-list__container">
-    {LIBRARY_DOMMY_DATA.map(item => <LibraryItem type={item.type} title={item.title} description={item.description} />)}
-    <div className="add-library__container">
-      <img className="add-library__image" src={addLibrary} alt="add"></img>
-      <span className="add-library__title">Click to add a library</span>
-    </div>
-  </div>;
+  const [showCreateLibraryModal, setShowCreateLibraryModal] = useState(false);
+
+  const handleCloseCreateLibraryModal = () => setShowCreateLibraryModal(false);
+
+  const handleShowCreateLibraryModal = () => setShowCreateLibraryModal(true);
+
+  return (
+    <>
+      <div className="library-list__container">
+        {LIBRARY_DOMMY_DATA.map((item) => (
+          <LibraryItem
+            type={item.type}
+            title={item.title}
+            description={item.description}
+          />
+        ))}
+        <div
+          className="add-library__container"
+          onClick={handleShowCreateLibraryModal}
+        >
+          <img className="add-library__image" src={addLibrary} alt="add"></img>
+          <span className="add-library__title">Click to add a library</span>
+        </div>
+      </div>
+
+      <CreateLibraryModal
+        show={showCreateLibraryModal}
+        handleClose={handleCloseCreateLibraryModal}
+      />
+    </>
+  );
 };
 
 export default LibraryList;

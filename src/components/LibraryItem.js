@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import "../styles/LibraryItem.css";
 import bookIcon from "../assets/ic_book.jpg";
 import videoIcon from "../assets/ic_video.jpg";
