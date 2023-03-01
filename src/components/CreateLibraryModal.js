@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -7,12 +8,14 @@ import addIcon from "../assets/add.png";
 import { notifySuccess } from "../utils/notification";
 import "../styles/CreateLibraryModal.css";
 
-const CreateLibraryModal = ({ show, handleClose }) => {
+const CreateLibraryModal = ({ show, handleClose, updateLibraries }) => {
   const libraryNameRef = useRef(null);
   const libraryDescriptionRef = useRef(null);
   const typeRef = useRef(null);
   const propertyRefsList = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const [properyCounter, setProperyCounter] = useState(1);
+  const token = useSelector((state) => state.user.token);
+
 
   const handleSubmitForm = async () => {
     let properties = [];
@@ -24,12 +27,13 @@ const CreateLibraryModal = ({ show, handleClose }) => {
       description: libraryDescriptionRef.current.value,
       type: typeRef.current.value,
       file_attributes: properties,
-    });
-    if (response !== null && response.id !== null) {
+    }, token);
+    if (response && response.id) {
       notifySuccess("Library created successfully!");
     }
     handleClose();
     setProperyCounter(1);
+    await updateLibraries();
   };
 
   const renderExtraPropertyInputs = () => {
