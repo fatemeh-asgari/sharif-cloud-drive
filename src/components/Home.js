@@ -16,7 +16,7 @@ const Home = () => {
 
   const handleLogout = async () => {
     const responseText = await logoutUser(token);
-    if (responseText !== null && responseText === "done") {
+    if (responseText !== null && responseText === "\"done\"") {
       dispatch(logout());
       navigate("/");
     }
