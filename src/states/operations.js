@@ -68,7 +68,7 @@ export const logoutUser = async (token) => {
   }
 };
 
-export const createLibrary = async (data) => {
+export const createLibrary = async (data, token) => {
   try {
     const url = `http://127.0.0.1:8000/api/v1/library/`;
     const response = await fetch(url, {
@@ -76,11 +76,34 @@ export const createLibrary = async (data) => {
       headers: {
         Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
         "Content-Type": "application/json",
+        "User-Token": token,
       },
       body: JSON.stringify(data),
     });
     if (!response.ok) {
       throw new Error("Create library failed!");
+    }
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    notifyError(error.message);
+    return null;
+  }
+};
+
+export const fetchLibraries = async (token) => {
+  try {
+    const url = `http://127.0.0.1:8000/api/v1/library/`;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        "Content-Type": "application/json",
+        "User-Token": token,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Fetch libraries failed!");
     }
     const responseData = await response.json();
     return responseData;
