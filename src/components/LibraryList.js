@@ -74,7 +74,7 @@ const LibraryList = () => {
           libraries.map((item) => (
             <LibraryItem
               type={item.type}
-              title={item.title}
+              title={item.name}
               description={item.description}
             />
           ))}
