@@ -1,0 +1,27 @@
+.file-item__container {
+  display: flex;
+  width: 300px;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  border: 2px solid #dddddd;
+}
+
+.file-item__image {
+  width: 50%;
+  padding-bottom: 1rem;
+}
+
+.file-item__title {
+  font-size: 1rem;
+  color: #222222;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.file-item-options__container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}

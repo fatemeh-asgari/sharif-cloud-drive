@@ -7,6 +7,7 @@ import "./App.css";
 import Login from "./components/Login";
 import SignUp from "./components/Signup";
 import Home from "./components/Home";
+import LibraryPage from "./components/LibraryPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/sign-in" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/library" element={<LibraryPage />} />
         </Routes>
         <ToastContainer />
       </div>

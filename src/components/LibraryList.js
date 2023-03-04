@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import LibraryItem from "./LibraryItem";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CreateLibraryModal from "./CreateLibraryModal";
 import { fetchLibraries } from "../states/operations";
-import { saveLibraries } from "../states/librarySlice";
+import { saveLibraries, selectLibrary } from "../states/librarySlice";
 import addLibrary from "../assets/addLibrary.svg";
 import "../styles/LibraryList.css";
 
 // const LIBRARY_DOMMY_DATA = [
 //   {
+//     id: 1,
 //     type: "book",
-//     title: "novels",
+//     name: "novels",
 //     description: "Classic novels by Jane Austen",
 //   },
 //   {
@@ -53,6 +55,7 @@ import "../styles/LibraryList.css";
 const LibraryList = () => {
   const [showCreateLibraryModal, setShowCreateLibraryModal] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const libraries = useSelector((state) => state.library.libraries);
   const token = useSelector((state) => state.user.token);
 
@@ -67,6 +70,19 @@ const LibraryList = () => {
     }
   };
 
+  const handleClickOnLibrary = (name) => {
+    for (const library of libraries) {
+      if (library.name === name) {
+        dispatch(selectLibrary(library));
+        navigate("/library");
+        console.log("name:", name)
+        return;
+      }
+    }
+    // dispatch(selectLibrary({id: 1}));
+    // navigate("/library");
+  };
+
   return (
     <>
       <div className="library-list__container">
@@ -76,6 +92,7 @@ const LibraryList = () => {
               type={item.type}
               title={item.name}
               description={item.description}
+              onClick={handleClickOnLibrary}
             />
           ))}
         <div

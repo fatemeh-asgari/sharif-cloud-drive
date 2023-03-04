@@ -22,7 +22,7 @@ const LibraryItem = ({ type, title, description, onClick }) => {
   };
 
   return (
-    <div className="library-item__container" onClick={onClick}>
+    <div className="library-item__container" onClick={() => {onClick(title)}}>
       <img className="library-item__image" src={renderLibraryIcon()} alt="icon"></img>
       <span className="library-item__title">{title}</span>
       <p className="library-item__description">{description}</p>
