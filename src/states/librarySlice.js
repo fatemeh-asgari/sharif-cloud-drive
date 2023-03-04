@@ -4,12 +4,7 @@ export const librarySlice = createSlice({
   name: "library",
   initialState: {
     count: 0,
-    libraries: [{
-      id: 1,
-      type: "book",
-      name: "novels",
-      description: "Classic novels by Jane Austen",
-    },],
+    libraries: null,
     selectedLibrary: null,
     libraryFiles: null,
   },
