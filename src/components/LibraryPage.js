@@ -112,7 +112,7 @@ const LibraryPage = () => {
 
   useEffect(() => {
     const getFiles = async () => {
-      const responseData = await fetchFiles(token);
+      const responseData = await fetchFiles(token, selectedLibrary.id);
       if (responseData) {
         dispatch(saveFiles(responseData));
       }
