@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../states/operations";
+import { logoutUser, fetchLibraries } from "../states/operations";
 import { logout } from "../states/userSlice";
+import { saveLibraries } from "../states/librarySlice";
 import avatar from "../assets/person.svg";
 import "../styles/Home.css";
 import LibraryList from "./LibraryList";
@@ -22,6 +23,16 @@ const Home = () => {
       navigate("/");
     }
   };
+
+  useEffect( () => {
+    const getLibraries = async () => {
+      const responseData = await fetchLibraries(token);
+      if (responseData) {
+        dispatch(saveLibraries(responseData));
+      }
+    };
+    getLibraries();
+  })
 
   return (
     <>

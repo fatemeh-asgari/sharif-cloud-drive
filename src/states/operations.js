@@ -112,3 +112,71 @@ export const fetchLibraries = async (token) => {
     return null;
   }
 };
+
+export const createFile = async (formData, token) => {
+  try {
+    const url = `http://127.0.0.1:8000/api/v1/file/`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        // "Content-Type": "application/json",
+        "User-Token": token,
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      throw new Error("Create file failed!");
+    }
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    notifyError(error.message);
+    return null;
+  }
+};
+
+export const createAttachment = async (formData, token) => {
+  try {
+    const url = `http://127.0.0.1:8000/api/v1/attachment/`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        // "Content-Type": "application/json",
+        "User-Token": token,
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      throw new Error("Create attachment failed!");
+    }
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    notifyError(error.message);
+    return null;
+  }
+};
+
+export const fetchFiles = async (token, libraryId) => {
+  try {
+    const url = `http://127.0.0.1:8000/api/v1/file/?library=${libraryId}`;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        "Content-Type": "application/json",
+        "User-Token": token,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Fetch files failed!");
+    }
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    notifyError(error.message);
+    return null;
+  }
+};
