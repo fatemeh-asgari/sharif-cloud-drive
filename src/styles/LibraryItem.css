@@ -25,3 +25,10 @@
   color: #9f9f9f;
   margin: 0;
 }
+
+.library-item-options__container {
+  margin-top: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}

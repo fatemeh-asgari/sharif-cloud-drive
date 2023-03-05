@@ -75,12 +75,9 @@ const LibraryList = () => {
       if (library.name === name) {
         dispatch(selectLibrary(library));
         navigate("/library");
-        console.log("name:", name)
         return;
       }
     }
-    // dispatch(selectLibrary({id: 1}));
-    // navigate("/library");
   };
 
   return (
@@ -93,6 +90,7 @@ const LibraryList = () => {
               title={item.name}
               description={item.description}
               onClick={handleClickOnLibrary}
+              id={item.id}
             />
           ))}
         <div

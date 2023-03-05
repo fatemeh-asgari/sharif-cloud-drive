@@ -180,3 +180,26 @@ export const fetchFiles = async (token, libraryId) => {
     return null;
   }
 };
+
+export const shareLibrary = async (token, data) => {
+  try {
+    const url = `http://127.0.0.1:8000/api/v1/share-library/`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: "token dab904cda801c0fcfdd1ebe25600646ffdd90bc3",
+        "Content-Type": "application/json",
+        "User-Token": token,
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error("Share library failed!");
+    }
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    notifyError(error.message);
+    return null;
+  }
+};
