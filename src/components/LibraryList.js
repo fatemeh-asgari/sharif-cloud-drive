@@ -80,8 +80,8 @@ const LibraryList = () => {
     }
   };
 
-  const handleDeleteLibrary = async () => {
-    const response = await deleteLibrary();
+  const handleDeleteLibrary = async (token, id) => {
+    const response = await deleteLibrary(token, id);
     if (response === "done") {
       await getLibraries();
     }
@@ -98,7 +98,7 @@ const LibraryList = () => {
               description={item.description}
               onClick={handleClickOnLibrary}
               id={item.id}
-              handleDeleteLibrary={handleDeleteLibrary}
+              handleDeleteLibrary={() => handleDeleteLibrary(token, item.id)}
             />
           ))}
         <div
