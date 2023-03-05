@@ -3,7 +3,7 @@ import LibraryItem from "./LibraryItem";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CreateLibraryModal from "./CreateLibraryModal";
-import { fetchLibraries } from "../states/operations";
+import { fetchLibraries, deleteLibrary } from "../states/operations";
 import { saveLibraries, selectLibrary } from "../states/librarySlice";
 import addLibrary from "../assets/addLibrary.svg";
 import "../styles/LibraryList.css";
@@ -80,6 +80,13 @@ const LibraryList = () => {
     }
   };
 
+  const handleDeleteLibrary = async () => {
+    const response = await deleteLibrary();
+    if (response === "done") {
+      await getLibraries();
+    }
+  }
+
   return (
     <>
       <div className="library-list__container">
@@ -91,6 +98,7 @@ const LibraryList = () => {
               description={item.description}
               onClick={handleClickOnLibrary}
               id={item.id}
+              handleDeleteLibrary={handleDeleteLibrary}
             />
           ))}
         <div

@@ -203,3 +203,23 @@ export const shareLibrary = async (token, data) => {
     return null;
   }
 };
+
+export const deleteLibrary = async (token, libraryId) => {
+  try {
+    const url = `http://127.0.0.1:8000/api/v1/library/${libraryId}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Authorization: "token dab904cda801c0fcfdd1ebe25600646ffdd90bc3",
+        "Content-Type": "application/json",
+        "User-Token": token,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Delete library failed!");
+    }
+    return "done";
+  } catch (error) {
+    notifyError(error.message);
+  }
+};

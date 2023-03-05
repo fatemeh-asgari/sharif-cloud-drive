@@ -7,7 +7,7 @@ import videoIcon from "../assets/ic_video.jpg";
 import pictureIcon from "../assets/ic_picture.PNG";
 import musicIcon from "../assets/ic_music.jpg";
 
-const LibraryItem = ({ type, title, description, onClick, id }) => {
+const LibraryItem = ({ type, title, description, onClick, id, handleDeleteLibrary }) => {
   const [showShareLibraryModal, setShowShareLibraryModal] = useState(false);
 
   const handleCloseShareLibraryModal = () => setShowShareLibraryModal(false);
@@ -62,7 +62,7 @@ const LibraryItem = ({ type, title, description, onClick, id }) => {
             <Dropdown.Item onClick={handleShowShareLibraryModal}>
               Share
             </Dropdown.Item>
-            <Dropdown.Item href="#">Delete</Dropdown.Item>
+            <Dropdown.Item onClick={handleDeleteLibrary}>Delete</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <ShareLibraryModal
