@@ -31,8 +31,10 @@ const Home = () => {
         dispatch(saveLibraries(responseData));
       }
     };
-    getLibraries();
-  })
+    if (token){
+      getLibraries();
+    } 
+  }, [dispatch, token])
 
   return (
     <>

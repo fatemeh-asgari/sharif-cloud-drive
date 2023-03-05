@@ -118,7 +118,7 @@ const LibraryPage = () => {
       }
     };
     getFiles();
-  });
+  },[dispatch, token]);
 
   return (
     <>
