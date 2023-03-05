@@ -28,7 +28,7 @@ export const loginUser = async (data) => {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        Authorization: "token dab904cda801c0fcfdd1ebe25600646ffdd90bc3",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
@@ -52,7 +52,7 @@ export const logoutUser = async (token) => {
       method: "POST",
       mode: "cors",
       headers: {
-        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        Authorization: "token dab904cda801c0fcfdd1ebe25600646ffdd90bc3",
         "Content-Type": "application/json",
         "User-Token": token,
       },
@@ -74,7 +74,7 @@ export const createLibrary = async (data, token) => {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        Authorization: "token dab904cda801c0fcfdd1ebe25600646ffdd90bc3",
         "Content-Type": "application/json",
         "User-Token": token,
       },
@@ -97,7 +97,7 @@ export const fetchLibraries = async (token) => {
     const response = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        Authorization: "token dab904cda801c0fcfdd1ebe25600646ffdd90bc3",
         "Content-Type": "application/json",
         "User-Token": token,
       },
@@ -119,7 +119,7 @@ export const createFile = async (formData, token) => {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        Authorization: "token dab904cda801c0fcfdd1ebe25600646ffdd90bc3",
         // "Content-Type": "application/json",
         "User-Token": token,
       },
@@ -142,7 +142,7 @@ export const createAttachment = async (formData, token) => {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        Authorization: "token dab904cda801c0fcfdd1ebe25600646ffdd90bc3",
         // "Content-Type": "application/json",
         "User-Token": token,
       },
@@ -165,7 +165,7 @@ export const fetchFiles = async (token, libraryId) => {
     const response = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: "token 21a97871ab521e72c998671c1222f23868f05df2",
+        Authorization: "token dab904cda801c0fcfdd1ebe25600646ffdd90bc3",
         "Content-Type": "application/json",
         "User-Token": token,
       },
