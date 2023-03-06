@@ -67,25 +67,24 @@ const CreateFileModal = ({ show, handleClose, updateFiles }) => {
   const handleSubmitForm = async () => {
     const formData = new FormData();
     let attributes = {};
-    for (let i = 0; i < selectedLibrary.file_attributes.length; i++) {
-      attributes[selectedLibrary.file_attributes[i]] =
-        propertyRefsList[i].current.value;
+    for (let i=0; i < selectedLibrary.file_attributes.length; i++) {
+      attributes[selectedLibrary.file_attributes[i]] = propertyRefsList[i].current.value;
     }
-    formData.append("attributes", attributes);
+    const json = JSON.stringify(attributes)
+    formData.append("attributes", json);
     formData.append("library", selectedLibrary.id);
     formData.append("file", file);
     const response = await createFile(formData, token);
     if (response && response.id) {
+      console.log(response.id);
       const attachmentFormData = new FormData();
-      attachmentFormData.append(
-        formData.append("library_file", selectedLibrary.id)
-      );
-      formData.append("file", attachment);
-      const createAttachmentResponse = await createAttachment(formData, token);
+      attachmentFormData.append("library_file", response.id);
+      attachmentFormData.append("file", attachment);
+      const createAttachmentResponse = await createAttachment(attachmentFormData, token);
       if (createAttachmentResponse && createAttachmentResponse.id) {
         notifySuccess("Library created successfully!");
         handleClose();
-        await updateFiles();
+        await updateFiles()
       }
     }
   };
@@ -114,13 +113,12 @@ const CreateFileModal = ({ show, handleClose, updateFiles }) => {
               accept={getAcceptableAttachmentFormats()}
             />
           </Form.Group>
-          {selectedLibrary.file_attributes &&
-            selectedLibrary.file_attributes.map((attribute, idx) => (
-              <Form.Group className="mb-3" key={idx}>
-                <Form.Label>{attribute}</Form.Label>
-                <Form.Control type="text" ref={propertyRefsList[idx]} />
-              </Form.Group>
-            ))}
+          {selectedLibrary.file_attributes && selectedLibrary.file_attributes.map((attribute, idx) => (
+            <Form.Group className="mb-3" key={idx}>
+              <Form.Label>{attribute}</Form.Label>
+              <Form.Control type="text" ref={propertyRefsList[idx]} />
+            </Form.Group>
+          ))}
         </Form>
       </Modal.Body>
       <Modal.Footer>
