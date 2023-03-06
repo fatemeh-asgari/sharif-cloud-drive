@@ -1,6 +1,15 @@
-# Getting Started with Create React App
+# content-management
+This is a content management system where you can create different types of libraries (videos/musics/books/pictures) and upload your files into it.
+This system helps you to manage your files and you can also share your libraries with your friends. In addition, files of each library can have their special
+attachments. It is designed to be simple to use and flexible enough to meet a wide range of needs.
+This project consists of 3 parts. Front-end, Back-end, and DevOps. This repositoy consist of Back-end and DevOps part.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Features
+* File Upload: Easily upload files to your personal library.
+* Library Creation: Create libraries to organize your files.
+* Library Sharing: Share your libraries with others via a unique URL.
+* Collaboration: Collaborate with others on a library by granting them editing access.
 
 ## Available Scripts
 
