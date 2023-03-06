@@ -3,7 +3,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DownloadLink from "react-download-link";
 import "../styles/FileItem.css";
 import fileIcon from "../assets/ic_file.png";
-import { Link } from "react-router-dom";
 
 const FileItem = ({
   name,
@@ -40,25 +39,23 @@ const FileItem = ({
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item>
-              <div className="download-link__container">
-                {type === "book" ? (
+            {type === "book" ? (
+              <Dropdown.Item>
+                <div className="download-link__container">
                   <DownloadLink
                     label="Download"
                     filename={name}
                     exportFile={() => Promise.resolve(getDataFromURL(fileUrl))}
                   />
-                ) : (
-                  <Link to={fileUrl} target="_blank" download>
-                    Download
-                  </Link>
-                )}
-              </div>
-            </Dropdown.Item>
+                </div>
+              </Dropdown.Item>
+            ) : (
+              <Dropdown.Item href={fileUrl}>Download</Dropdown.Item>
+            )}
             <Dropdown.Item onClick={handleDeleteFile}>Delete</Dropdown.Item>
-            <Dropdown.Item>
-              <div className="download-link__container">
-                {type === "picture" || type === "music" ? (
+            {type === "picture" || type === "music" ? (
+              <Dropdown.Item>
+                <div className="download-link__container">
                   <DownloadLink
                     label="Download attachment"
                     filename={attachmentName}
@@ -66,13 +63,13 @@ const FileItem = ({
                       Promise.resolve(getDataFromURL(attachmentUrl))
                     }
                   />
-                ) : (
-                  <Link to={attachmentUrl} target="_blank" download>
-                    Download attachment
-                  </Link>
-                )}
-              </div>
-            </Dropdown.Item>
+                </div>
+              </Dropdown.Item>
+            ) : (
+              <Dropdown.Item href={attachmentUrl}>
+                Download attachment
+              </Dropdown.Item>
+            )}
             <Dropdown.Item href="#">Show properties</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
