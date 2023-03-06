@@ -12,6 +12,17 @@ const FileItem = ({
   attachmentName,
   handleDeleteFile,
 }) => {
+  const getDataFromURL = (url) =>
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        fetch(url)
+          .then((response) => response.text())
+          .then((data) => {
+            resolve(data);
+          });
+      });
+    }, 2000);
+
   return (
     <div className="file-item__container" onClick={onClick}>
       <img className="file-item__image" src={fileIcon} alt="icon"></img>
@@ -32,18 +43,20 @@ const FileItem = ({
                 <DownloadLink
                   label="Download"
                   filename={name}
-                  exportFile={() => fileUrl}
+                  exportFile={() => Promise.resolve(getDataFromURL(fileUrl))}
                 />
               </div>
             </Dropdown.Item>
             <Dropdown.Item onClick={handleDeleteFile}>Delete</Dropdown.Item>
-            <Dropdown.Item><div className="download-link__container">
+            <Dropdown.Item>
+              <div className="download-link__container">
                 <DownloadLink
                   label="Download attachment"
                   filename={attachmentName}
-                  exportFile={() => attachmentUrl}
+                  exportFile={() => Promise.resolve(getDataFromURL(attachmentUrl))}
                 />
-              </div></Dropdown.Item>
+              </div>
+            </Dropdown.Item>
             <Dropdown.Item href="#">Show properties</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
