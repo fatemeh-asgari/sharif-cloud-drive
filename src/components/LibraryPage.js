@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FileItem from "./FileItem";
 import CreateFileModal from "./CreateFileModal";
-import { logoutUser, fetchFiles } from "../states/operations";
+import { logoutUser, fetchFiles, deleteFile } from "../states/operations";
 import { logout } from "../states/userSlice";
 import { cancelSelectLibrary, saveFiles } from "../states/librarySlice";
 import avatar from "../assets/person.svg";
@@ -110,6 +110,13 @@ const LibraryPage = () => {
   // 	});
   // }
 
+  const handleDeleteFile = async (token, id) => {
+    const response = await deleteFile(token, id);
+    if (response === "done") {
+      await getFiles();
+    }
+  }
+
   useEffect(() => {
     const getFiles = async () => {
       const responseData = await fetchFiles(token, selectedLibrary.id);
@@ -166,6 +173,7 @@ const LibraryPage = () => {
               fileUrl={item.file}
               attachmentUrl={item.attachments[0].file}
               attachmentName={item.attachments[0].file_name}
+              handleDeleteFile={() => handleDeleteFile(token, item.id)}
             />
           ))}
         <div

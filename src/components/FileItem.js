@@ -10,6 +10,7 @@ const FileItem = ({
   fileUrl,
   attachmentUrl,
   attachmentName,
+  handleDeleteFile,
 }) => {
   return (
     <div className="file-item__container" onClick={onClick}>
@@ -35,8 +36,8 @@ const FileItem = ({
                 />
               </div>
             </Dropdown.Item>
-            <Dropdown.Item href="#">Delete</Dropdown.Item>
-            <Dropdown.Item href="#"><div className="download-link__container">
+            <Dropdown.Item onClick={handleDeleteFile}>Delete</Dropdown.Item>
+            <Dropdown.Item><div className="download-link__container">
                 <DownloadLink
                   label="Download attachment"
                   filename={attachmentName}

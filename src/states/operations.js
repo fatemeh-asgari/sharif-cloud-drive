@@ -223,3 +223,23 @@ export const deleteLibrary = async (token, libraryId) => {
     notifyError(error.message);
   }
 };
+
+export const deleteFile = async (token, fileId) => {
+  try {
+    const url = `http://127.0.0.1:8000/api/v1/file/${fileId}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Authorization: "token dab904cda801c0fcfdd1ebe25600646ffdd90bc3",
+        "Content-Type": "application/json",
+        "User-Token": token,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Delete file failed!");
+    }
+    return "done";
+  } catch (error) {
+    notifyError(error.message);
+  }
+};
