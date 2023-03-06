@@ -25,3 +25,8 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.download-link__container>a {
+  color: inherit !important;
+  text-decoration: none !important;
+}

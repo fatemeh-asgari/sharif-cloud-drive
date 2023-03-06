@@ -1,9 +1,16 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import DownloadLink from "react-download-link";
 import "../styles/FileItem.css";
 import fileIcon from "../assets/ic_file.png";
 
-const FileItem = ({ name, onClick }) => {
+const FileItem = ({
+  name,
+  onClick,
+  fileUrl,
+  attachmentUrl,
+  attachmentName,
+}) => {
   return (
     <div className="file-item__container" onClick={onClick}>
       <img className="file-item__image" src={fileIcon} alt="icon"></img>
@@ -19,9 +26,23 @@ const FileItem = ({ name, onClick }) => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item href="#">Download</Dropdown.Item>
+            <Dropdown.Item>
+              <div className="download-link__container">
+                <DownloadLink
+                  label="Download"
+                  filename={name}
+                  exportFile={() => fileUrl}
+                />
+              </div>
+            </Dropdown.Item>
             <Dropdown.Item href="#">Delete</Dropdown.Item>
-            <Dropdown.Item href="#">Download attachment</Dropdown.Item>
+            <Dropdown.Item href="#"><div className="download-link__container">
+                <DownloadLink
+                  label="Download attachment"
+                  filename={attachmentName}
+                  exportFile={() => attachmentUrl}
+                />
+              </div></Dropdown.Item>
             <Dropdown.Item href="#">Show properties</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

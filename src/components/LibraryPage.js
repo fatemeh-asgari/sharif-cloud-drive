@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FileItem from "./FileItem";
 import CreateFileModal from "./CreateFileModal";
 import { logoutUser, fetchFiles } from "../states/operations";
@@ -163,7 +163,9 @@ const LibraryPage = () => {
             <FileItem
               key={item.id}
               name={item.file_name}
-              description={item.description}
+              fileUrl={item.file}
+              attachmentUrl={item.attachments[0].file}
+              attachmentName={item.attachments[0].file_name}
             />
           ))}
         <div
