@@ -8,50 +8,6 @@ import { saveLibraries, selectLibrary } from "../states/librarySlice";
 import addLibrary from "../assets/addLibrary.svg";
 import "../styles/LibraryList.css";
 
-// const LIBRARY_DOMMY_DATA = [
-//   {
-//     id: 1,
-//     type: "book",
-//     name: "novels",
-//     description: "Classic novels by Jane Austen",
-//   },
-//   {
-//     type: "picture",
-//     title: "nature",
-//     description: "Pictures of nature",
-//   },
-//   {
-//     type: "video",
-//     title: "movies",
-//     description: "MIDB top 100 movies",
-//   },
-//   {
-//     type: "music",
-//     title: "Pink Floyd",
-//     description: "Pink Floyd tracks",
-//   },
-//   {
-//     type: "book",
-//     title: "novels",
-//     description: "Classic novels by Jane Austen",
-//   },
-//   {
-//     type: "book",
-//     title: "novels",
-//     description: "Classic novels by Jane Austen",
-//   },
-//   {
-//     type: "book",
-//     title: "novels",
-//     description: "Classic novels by Jane Austen",
-//   },
-//   {
-//     type: "book",
-//     title: "novels",
-//     description: "Classic novels by Jane Austen",
-//   },
-// ];
-
 const LibraryList = () => {
   const [showCreateLibraryModal, setShowCreateLibraryModal] = useState(false);
   const dispatch = useDispatch();
@@ -85,7 +41,7 @@ const LibraryList = () => {
     if (response === "done") {
       await getLibraries();
     }
-  }
+  };
 
   return (
     <>

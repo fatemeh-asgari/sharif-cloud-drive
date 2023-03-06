@@ -11,54 +11,6 @@ import back from "../assets/ic_back_black.svg";
 import addFile from "../assets/add_file.svg";
 import "../styles/LibraryPage.css";
 
-// const FILES_DOMMY_DATA = [
-//   {
-//     id: 1,
-//     library: 1,
-//     file: "http://127.0.0.1:8000/files/library/files/Sprint2_Review_oz55B5a.pdf",
-//     description: "A PDF file",
-//     attributes: null,
-//     attachment_fields: null,
-//     file_name: "Sprint2_Review_oz55B5a.pdf",
-//   },
-//   {
-//     id: 2,
-//     library: 1,
-//     file: "http://127.0.0.1:8000/files/library/files/Sprint2_Review_oz55B5a.pdf",
-//     description: "A PDF file",
-//     attributes: null,
-//     attachment_fields: null,
-//     file_name: "Sprint2_Review_oz55B5a.pdf",
-//   },
-//   {
-//     id: 3,
-//     library: 1,
-//     file: "http://127.0.0.1:8000/files/library/files/Sprint2_Review_oz55B5a.pdf",
-//     description: "A PDF file",
-//     attributes: null,
-//     attachment_fields: null,
-//     file_name: "Sprint2_Review_oz55B5a.pdf",
-//   },
-//   {
-//     id: 4,
-//     library: 1,
-//     file: "http://127.0.0.1:8000/files/library/files/Sprint2_Review_oz55B5a.pdf",
-//     description: "A PDF file",
-//     attributes: null,
-//     attachment_fields: null,
-//     file_name: "Sprint2_Review_oz55B5a.pdf",
-//   },
-//   {
-//     id: 5,
-//     library: 1,
-//     file: "http://127.0.0.1:8000/files/library/files/Sprint2_Review_oz55B5a.pdf",
-//     description: "A PDF file",
-//     attributes: null,
-//     attachment_fields: null,
-//     file_name: "Sprint2_Review_oz55B5a.pdf",
-//   },
-// ];
-
 const LibraryPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -96,26 +48,12 @@ const LibraryPage = () => {
     }
   };
 
-  // const downloadEmployeeData = () => {
-  // 	fetch('https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp')
-  // 		.then(response => {
-  // 			response.blob().then(blob => {
-  // 				let url = window.URL.createObjectURL(blob);
-  // 				let a = document.createElement('a');
-  // 				a.href = url;
-  // 				a.download = 'employees.json';
-  // 				a.click();
-  // 			});
-  // 			//window.location.href = response.url;
-  // 	});
-  // }
-
   const handleDeleteFile = async (token, id) => {
     const response = await deleteFile(token, id);
     if (response === "done") {
       await getFiles();
     }
-  }
+  };
 
   useEffect(() => {
     const getFiles = async () => {
@@ -125,7 +63,7 @@ const LibraryPage = () => {
       }
     };
     getFiles();
-  },[dispatch, token]);
+  }, [dispatch, token]);
 
   return (
     <>
@@ -175,6 +113,7 @@ const LibraryPage = () => {
               attachmentName={item.attachments[0].file_name}
               handleDeleteFile={() => handleDeleteFile(token, item.id)}
               type={selectedLibrary.type}
+              attributes={item.attributes}
             />
           ))}
         <div
@@ -190,8 +129,6 @@ const LibraryPage = () => {
         handleClose={handleCloseCreateFileModal}
         updateFiles={getFiles}
       />
-
-      {/* <Link to="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" target="_blank" download>Download</Link> */}
     </>
   );
 };

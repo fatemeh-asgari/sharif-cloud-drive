@@ -7,7 +7,14 @@ import videoIcon from "../assets/ic_video.jpg";
 import pictureIcon from "../assets/ic_picture.PNG";
 import musicIcon from "../assets/ic_music.jpg";
 
-const LibraryItem = ({ type, title, description, onClick, id, handleDeleteLibrary }) => {
+const LibraryItem = ({
+  type,
+  title,
+  description,
+  onClick,
+  id,
+  handleDeleteLibrary,
+}) => {
   const [showShareLibraryModal, setShowShareLibraryModal] = useState(false);
 
   const handleCloseShareLibraryModal = () => setShowShareLibraryModal(false);
