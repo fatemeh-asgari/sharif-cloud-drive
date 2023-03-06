@@ -174,6 +174,7 @@ const LibraryPage = () => {
               attachmentUrl={item.attachments[0].file}
               attachmentName={item.attachments[0].file_name}
               handleDeleteFile={() => handleDeleteFile(token, item.id)}
+              type={selectedLibrary.type}
             />
           ))}
         <div
